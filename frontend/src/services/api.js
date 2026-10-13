@@ -1,7 +1,11 @@
 import axios from "axios";
 import { API_URL } from "../config.js";
 
-const client = axios.create({ baseURL: API_URL, withCredentials: true, timeout: 20000 });
+const client = axios.create({
+  baseURL: API_URL,
+  withCredentials: true,
+  timeout: 20000,
+});
 let accessToken = "";
 let refreshPromise = null;
 
@@ -12,7 +16,11 @@ export function setAccessToken(token) {
 async function refreshAccessToken() {
   if (!refreshPromise) {
     refreshPromise = axios
-      .post(`${API_URL}/auth/refresh`, {}, { withCredentials: true, timeout: 20000 })
+      .post(
+        `${API_URL}/auth/refresh`,
+        {},
+        { withCredentials: true, timeout: 20000 },
+      )
       .then(({ data }) => {
         setAccessToken(data.accessToken);
         return data.accessToken;
@@ -30,7 +38,12 @@ client.interceptors.request.use((config) => {
 });
 
 function errorMessage(error) {
-  return error.response?.data?.message || error.response?.data?.error || error.message || "Request failed. Please try again.";
+  return (
+    error.response?.data?.message ||
+    error.response?.data?.error ||
+    error.message ||
+    "Request failed. Please try again."
+  );
 }
 
 export async function apiRequest(path, options = {}, canRefresh = true) {
@@ -60,7 +73,11 @@ export async function apiRequest(path, options = {}, canRefresh = true) {
 
 export async function refreshSession() {
   try {
-    const response = await axios.post(`${API_URL}/auth/refresh`, {}, { withCredentials: true, timeout: 20000 });
+    const response = await axios.post(
+      `${API_URL}/auth/refresh`,
+      {},
+      { withCredentials: true, timeout: 20000 },
+    );
     setAccessToken(response.data.accessToken);
     return response.data;
   } catch {
@@ -68,4 +85,3 @@ export async function refreshSession() {
     return null;
   }
 }
-
