@@ -1,0 +1,10 @@
+import { Router } from "express";
+import { cancelRegistration, exportRegistrations, listMyRegistrations, listRegistrations } from "../controllers/registrationController.js";
+import { allowRoles, protect } from "../middleware/authMiddleware.js";
+const router = Router();
+router.use(protect);
+router.get("/mine", allowRoles("student", "organizer"), listMyRegistrations);
+router.get("/", allowRoles("admin"), listRegistrations);
+router.get("/export", allowRoles("admin"), exportRegistrations);
+router.delete("/:id", cancelRegistration);
+export default router;

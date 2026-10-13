@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { createEvent, listEvents, registerForEvent, removeEvent, updateEventStatus } from "../controllers/eventController.js";
+import { allowRoles, protect } from "../middleware/authMiddleware.js";
+const router = Router();
+router.use(protect);
+router.get("/", listEvents);
+router.post("/", allowRoles("organizer", "admin"), createEvent);
+router.patch("/:id/status", allowRoles("admin"), updateEventStatus);
+router.delete("/:id", allowRoles("admin"), removeEvent);
+router.post("/:id/register", allowRoles("student"), registerForEvent);
+export default router;

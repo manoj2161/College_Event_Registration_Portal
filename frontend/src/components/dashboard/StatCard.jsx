@@ -1,0 +1,1 @@
+export default function StatCard({ label, value, hint, icon: Icon, accent = "violet" }) { return <article className={`stat-card glass-panel accent-${accent} reveal`}><div className="stat-top"><span>{label}</span><span className="stat-icon"><Icon size={18}/></span></div><div className="stat-value">{value}</div><p>{hint}</p></article>; }

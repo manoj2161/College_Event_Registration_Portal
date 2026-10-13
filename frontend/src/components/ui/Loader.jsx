@@ -1,0 +1,2 @@
+export function Loader({ small = false }) { return <span className={`spinner ${small ? "spinner-small" : ""}`} aria-label="Loading" />; }
+export function FullPageLoader() { return <div className="full-loader"><div className="brand-mark">C</div><Loader /><span>Loading your workspace</span></div>; }
