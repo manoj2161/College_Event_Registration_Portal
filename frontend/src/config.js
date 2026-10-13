@@ -1,4 +1,4 @@
-export const API_URL = import.meta.env.VITE_API_URLs;
+export const API_URL = import.meta.env.VITE_API_URL;
 export const DEPARTMENTS = [
   "C.S.E - BCA",
   "C.S.E - B.Tech",
