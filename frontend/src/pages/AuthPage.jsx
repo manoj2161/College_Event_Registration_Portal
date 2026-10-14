@@ -9,27 +9,10 @@ import {
   Users,
 } from "lucide-react";
 
+import logo from "./logo.png";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useToast } from "../context/ToastContext.jsx";
 import Button from "../components/ui/Button.jsx";
-
-const highlights = [
-  {
-    icon: CalendarDays,
-    title: "Events worth showing up for",
-    text: "Discover workshops, campus culture, and career opportunities.",
-  },
-  {
-    icon: Users,
-    title: "Your campus, connected",
-    text: "Find your people and build something beyond the classroom.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "One simple workspace",
-    text: "Manage registrations and event updates in one place.",
-  },
-];
 
 export default function AuthPage() {
   const navigate = useNavigate();
@@ -92,6 +75,7 @@ export default function AuthPage() {
       }
     } catch (err) {
       const message = err.message || "Something went wrong. Please try again.";
+
       setError(message);
       notify(message, "error");
     } finally {
@@ -100,24 +84,23 @@ export default function AuthPage() {
   }
 
   return (
-    <main className="auth-page">
+    <main className="auth-page text-2xl">
       <div className="auth-orb auth-orb-one" />
       <div className="auth-orb auth-orb-two" />
 
       <header className="auth-header">
         <a className="sidebar-brand auth-brand" href="/">
-          <div className="brand-mark">C</div>
+          <img
+            src={logo}
+            alt="Campusly Logo"
+            className="h-12 w-12 object-contain"
+          />
+
           <div>
-            <strong>
-              campusly<span>.</span>
-            </strong>
+            <strong>campusly</strong>
             <small>EVENTS & COMMUNITY</small>
           </div>
         </a>
-
-        <span className="auth-header-note">
-          <span className="status-dot" /> Your campus starts here
-        </span>
       </header>
 
       <div className="auth-layout">
@@ -138,29 +121,11 @@ export default function AuthPage() {
             make your time on campus count.
           </p>
 
-          <div className="auth-highlights">
-            {highlights.map(({ icon: Icon, title, text }) => (
-              <div className="auth-highlight" key={title}>
-                <div className="highlight-icon">
-                  <Icon size={19} />
-                </div>
-                <div>
-                  <strong>{title}</strong>
-                  <p>{text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="auth-story-footer">
-            <div className="avatar-stack">
-              <span>M</span>
-              <span>A</span>
-              <span>R</span>
-              <span>+</span>
-            </div>
-            <span>Built for students, organizers & campus communities</span>
-          </div>
+          <img
+            src={logo}
+            alt="Campusly Event Registration Portal"
+            className="mt-6 h-auto w-56 object-contain"
+          />
         </section>
 
         <section className="auth-card glass-panel">

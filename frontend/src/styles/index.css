@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: "DM Sans", sans-serif;
+
   color: #f4f4f7;
   background: #08090d;
   font-synthesis: none;
@@ -29,7 +29,7 @@ body {
   background:
     radial-gradient(
       ellipse at 18% 2%,
-      rgba(202, 138, 4, 0.12),
+      rgba(255, 180, 19, 0.12),
       transparent 34%
     ),
     radial-gradient(
@@ -59,8 +59,8 @@ button:disabled {
 .glass-panel {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.065),
-    rgba(255, 255, 255, 0.025)
+    rgba(214, 151, 151, 0.065),
+    rgba(80, 10, 10, 0.025)
   );
   border: 1px solid var(--line);
   box-shadow:
