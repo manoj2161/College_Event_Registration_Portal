@@ -15,32 +15,60 @@ export default function VerifyEmailPage() {
     if (!token) {
       setStatus("error");
       setMessage("This verification link is incomplete.");
-      return () => { active = false; };
+      return () => {
+        active = false;
+      };
     }
     apiRequest("/auth/verify-email", { method: "POST", body: { token } })
       .then((data) => {
         if (!active) return;
         setStatus("success");
-        setMessage(data.message || "Your email has been verified successfully.");
+        setMessage(
+          data.message || "Your email has been verified successfully.",
+        );
       })
       .catch((error) => {
         if (!active) return;
         setStatus("error");
-        setMessage(error.message || "This verification link is invalid or expired.");
+        setMessage(
+          error.message || "This verification link is invalid or expired.",
+        );
       });
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [params]);
 
   return (
     <main className="verify-page">
       <section className="verify-card glass-panel">
         <div className={`verify-icon ${status}`}>
-          {status === "success" ? <CheckCircle2 size={28} /> : status === "error" ? <CircleAlert size={28} /> : <MailCheck size={28} />}
+          {status === "success" ? (
+            <CheckCircle2 size={28} />
+          ) : status === "error" ? (
+            <CircleAlert size={28} />
+          ) : (
+            <MailCheck size={28} />
+          )}
         </div>
         <p className="eyebrow">CAMPUSLY ACCOUNT</p>
-        <h1>{status === "success" ? "Email verified" : status === "error" ? "Verification failed" : "Verifying email"}</h1>
+        <h1>
+          {status === "success"
+            ? "Email verified"
+            : status === "error"
+              ? "Verification failed"
+              : "Verifying email"}
+        </h1>
         <p className="verify-copy">{message}</p>
-        {status !== "loading" && <Link to="/"><Button>{status === "success" ? "Continue to Campusly" : "Back to sign in"}</Button></Link>}
+        {status !== "loading" && (
+          <Link to="/">
+            <Button>
+              {status === "success"
+                ? "Continue to Campusly"
+                : "Back to sign in"}
+            </Button>
+          </Link>
+        )}
       </section>
     </main>
   );
